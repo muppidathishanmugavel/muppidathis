@@ -327,6 +327,33 @@
     flex-shrink: 0;
   }
 
+  /* CONTACT BUTTONS */
+  .contact-buttons {
+    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;
+  }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .contact-btn-call {
+    background: var(--accent);
+    color: #fff;
+    border: 2px solid var(--accent);
+  }
+  .contact-btn-call:hover { background: #145c30; border-color: #145c30; transform: translateY(-2px); }
+  .contact-btn-whatsapp {
+    background: #25d366;
+    color: #fff;
+    border: 2px solid #25d366;
+  }
+  .contact-btn-whatsapp:hover { background: #1ebe5d; border-color: #1ebe5d; transform: translateY(-2px); }
+
   /* FOOTER */
   footer {
     background: #080b10;
@@ -516,6 +543,10 @@
         <div class="info-item">
           <div class="info-label">Phone</div>
           <div class="info-value">+91 81449 45663</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">LinkedIn</div>
+          <div class="info-value"><a href="https://www.linkedin.com/in/muppidathi-shanmugavel-30a82b34a/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:0.82rem;">View LinkedIn Profile →</a></div>
         </div>
         <div class="info-item">
           <div class="info-label">Awards</div>
@@ -895,18 +926,26 @@
         <p style="color:#6b7280; font-size:0.85rem;">Based in Thirunelveli, Tamil Nadu. Open to remote and hybrid roles.</p>
       </div>
       <div class="contact-links">
-        <a href="tel:+918144945663" class="contact-link">
-          <div class="contact-link-icon">📞</div>
-          <span>+91 81449 45663</span>
-        </a>
         <a href="mailto:muppidathishanmugavel@gmail.com" class="contact-link">
           <div class="contact-link-icon">✉️</div>
           <span>muppidathishanmugavel@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/muppidathi-shanmugavel-30a82b34a/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          <span>linkedin.com/in/muppidathi-shanmugavel</span>
         </a>
         <a href="#" class="contact-link">
           <div class="contact-link-icon">📍</div>
           <span>504, South Street, Kallur Post,<br>Thirunelveli – 627010</span>
         </a>
+        <div class="contact-buttons">
+          <a href="tel:+918144945663" class="contact-btn contact-btn-call">
+            📞 Call Me
+          </a>
+          <a href="https://wa.me/918144945663?text=Hi%20Muppidathi%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you!" target="_blank" class="contact-btn contact-btn-whatsapp">
+            💬 WhatsApp Me
+          </a>
+        </div>
       </div>
     </div>
   </div>
