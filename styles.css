@@ -1,5 +1,4 @@
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --ink: #0f1117;
@@ -489,7 +488,7 @@ nav a.active { color: #fff !important; }
 }
 
 /* ===== MUSIC BUTTON ===== */
-.music-btn { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:150; display:flex; align-items:center; gap:.5rem; padding:.6rem .95rem; border:0; border-radius:30px; background:var(--accent); color:#fff; font:600 .8rem 'Inter',sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.3); transition:transform .2s, background .2s; }
+.music-btn { position:fixed; left:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:150; display:flex; align-items:center; gap:.5rem; padding:.6rem .95rem; border:0; border-radius:30px; background:var(--accent); color:#fff; font:600 .8rem 'Inter',sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.3); transition:transform .2s, background .2s; }
 .music-btn:hover { transform:translateY(-2px); background:#145c30; }
 .music-btn .mb-ico { font-size:1.1rem; line-height:1; }
 .music-btn.off { background:#374151; }
