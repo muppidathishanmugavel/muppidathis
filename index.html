@@ -236,24 +236,34 @@
   © 2026 Muppidathi Shanmugavel · Built for job opportunities in digital marketing & training
 </footer>
 
+<div id="splash" role="dialog" aria-label="Welcome">
+  <div class="sp-eyebrow">Welcome to my portfolio</div>
+  <h1>Muppidathi<br><em>Shanmugavel</em></h1>
+  <p>Digital Marketing &amp; Training Professional</p>
+  <button class="sp-enter" id="spEnter" type="button">🎵 Enter with music</button>
+  <button class="sp-skip" id="spSkip" type="button">Enter without music</button>
+</div>
 <button id="musicBtn" class="music-btn off" type="button" aria-label="Play or pause background music"><span class="mb-ico">🔇</span><span class="mb-txt">Music off</span></button>
 <script>
 (function(){
-  var KEY='bgm_pref', TKEY='bgm_time';
+  var KEY='bgm_pref', TKEY='bgm_time', EKEY='bgm_entered';
   var a=new Audio('music.mp3'); a.loop=true; a.volume=0.22; a.preload='auto';
   var btn=document.getElementById('musicBtn'), ico=btn.querySelector('.mb-ico'), txt=btn.querySelector('.mb-txt');
+  var splash=document.getElementById('splash');
   function get(k,s){try{return (s?sessionStorage:localStorage).getItem(k);}catch(e){return null;}}
   function set(k,v,s){try{(s?sessionStorage:localStorage).setItem(k,v);}catch(e){}}
   function ui(on,wait){btn.classList.toggle('off',!on);btn.classList.toggle('wait',!!wait);
     ico.textContent=on?'🔊':'🔇'; txt.textContent=on?'Music on':(wait?'Tap to play':'Music off');}
-  var t=parseFloat(get(TKEY,true)); 
+  var t=parseFloat(get(TKEY,true));
   a.addEventListener('loadedmetadata',function(){ if(t>0 && t<a.duration){ try{a.currentTime=t;}catch(e){} } });
   a.addEventListener('timeupdate',function(){ set(TKEY,a.currentTime,true); });
   function start(){ return a.play().then(function(){ui(true);return true;}); }
-  function armFirstTouch(){
+  function closeSplash(){ splash.classList.remove('show'); set(EKEY,'1',true); }
+  // fallback: first real user gesture (events that count as activation)
+  function armFirstGesture(){
     ui(false,true);
-    var ev=['pointerdown','touchstart','keydown','click'];
-    function go(e){ if(e&&btn.contains(e.target)) return;
+    var ev=['pointerup','touchend','mousedown','keydown','click'];
+    function go(e){ if(e&&e.target&&btn.contains(e.target)) return;
       ev.forEach(function(n){document.removeEventListener(n,go,true);});
       if(get(KEY)!=='off'){ start().catch(function(){ui(false);}); } }
     ev.forEach(function(n){document.addEventListener(n,go,true);});
@@ -262,8 +272,15 @@
     if(a.paused){ set(KEY,'on'); start().catch(function(){ui(false);}); }
     else { a.pause(); set(KEY,'off'); ui(false); }
   });
-  if(get(KEY)==='off'){ ui(false); }
-  else { start().catch(armFirstTouch); }
+  document.getElementById('spEnter').addEventListener('click',function(){
+    set(KEY,'on'); start().catch(function(){ui(false);}); closeSplash(); });
+  document.getElementById('spSkip').addEventListener('click',function(){
+    set(KEY,'off'); ui(false); closeSplash(); });
+  if(get(KEY)==='off'){ ui(false); return; }
+  start().catch(function(){
+    if(get(EKEY,true)) armFirstGesture();      // already welcomed this visit: start on next tap
+    else { ui(false,true); splash.classList.add('show'); }   // first visit: welcome screen
+  });
 })();
 </script>
 </body>

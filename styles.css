@@ -495,3 +495,14 @@ nav a.active { color: #fff !important; }
 .music-btn.off { background:#374151; }
 .music-btn.wait { animation:mbPulse 1.6s infinite; }
 @keyframes mbPulse { 0%,100%{box-shadow:0 0 0 0 rgba(26,107,58,.6)} 50%{box-shadow:0 0 0 10px rgba(26,107,58,0)} }
+
+/* ===== WELCOME SPLASH ===== */
+#splash { position:fixed; inset:0; z-index:300; background:radial-gradient(circle at 50% 35%,#16301f,#0f1117 70%); display:none; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:1.5rem; color:#fff; }
+#splash.show { display:flex; }
+#splash .sp-eyebrow { font-family:'Space Mono',monospace; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:#6ee7a0; margin-bottom:.8rem; }
+#splash h1 { font-family:'DM Serif Display',serif; font-size:clamp(2rem,7vw,3.4rem); line-height:1.1; margin-bottom:.6rem; }
+#splash h1 em { color:#6ee7a0; }
+#splash p { color:#9ca3af; font-size:.95rem; margin-bottom:1.8rem; }
+#splash .sp-enter { border:0; border-radius:40px; background:#1a6b3a; color:#fff; font:700 1rem 'Inter',sans-serif; padding:.95rem 2.2rem; cursor:pointer; animation:mbPulse 1.6s infinite; }
+#splash .sp-enter:hover { background:#145c30; }
+#splash .sp-skip { margin-top:1.1rem; background:none; border:0; color:#6b7280; font:500 .8rem 'Inter',sans-serif; cursor:pointer; text-decoration:underline; }
