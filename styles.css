@@ -487,3 +487,11 @@ nav a.active { color: #fff !important; }
   .nav-links { display:flex !important; overflow-x:auto; gap:1.1rem; white-space:nowrap; }
   .hero { padding-top:3rem; }
 }
+
+/* ===== MUSIC BUTTON ===== */
+.music-btn { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:150; display:flex; align-items:center; gap:.5rem; padding:.6rem .95rem; border:0; border-radius:30px; background:var(--accent); color:#fff; font:600 .8rem 'Inter',sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.3); transition:transform .2s, background .2s; }
+.music-btn:hover { transform:translateY(-2px); background:#145c30; }
+.music-btn .mb-ico { font-size:1.1rem; line-height:1; }
+.music-btn.off { background:#374151; }
+.music-btn.wait { animation:mbPulse 1.6s infinite; }
+@keyframes mbPulse { 0%,100%{box-shadow:0 0 0 0 rgba(26,107,58,.6)} 50%{box-shadow:0 0 0 10px rgba(26,107,58,0)} }

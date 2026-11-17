@@ -125,5 +125,35 @@
   © 2026 Muppidathi Shanmugavel · Built for job opportunities in digital marketing & training
 </footer>
 
+<button id="musicBtn" class="music-btn off" type="button" aria-label="Play or pause background music"><span class="mb-ico">🔇</span><span class="mb-txt">Music off</span></button>
+<script>
+(function(){
+  var KEY='bgm_pref', TKEY='bgm_time';
+  var a=new Audio('music.mp3'); a.loop=true; a.volume=0.22; a.preload='auto';
+  var btn=document.getElementById('musicBtn'), ico=btn.querySelector('.mb-ico'), txt=btn.querySelector('.mb-txt');
+  function get(k,s){try{return (s?sessionStorage:localStorage).getItem(k);}catch(e){return null;}}
+  function set(k,v,s){try{(s?sessionStorage:localStorage).setItem(k,v);}catch(e){}}
+  function ui(on,wait){btn.classList.toggle('off',!on);btn.classList.toggle('wait',!!wait);
+    ico.textContent=on?'🔊':'🔇'; txt.textContent=on?'Music on':(wait?'Tap to play':'Music off');}
+  var t=parseFloat(get(TKEY,true)); 
+  a.addEventListener('loadedmetadata',function(){ if(t>0 && t<a.duration){ try{a.currentTime=t;}catch(e){} } });
+  a.addEventListener('timeupdate',function(){ set(TKEY,a.currentTime,true); });
+  function start(){ return a.play().then(function(){ui(true);return true;}); }
+  function armFirstTouch(){
+    ui(false,true);
+    var ev=['pointerdown','touchstart','keydown','click'];
+    function go(e){ if(e&&btn.contains(e.target)) return;
+      ev.forEach(function(n){document.removeEventListener(n,go,true);});
+      if(get(KEY)!=='off'){ start().catch(function(){ui(false);}); } }
+    ev.forEach(function(n){document.addEventListener(n,go,true);});
+  }
+  btn.addEventListener('click',function(){
+    if(a.paused){ set(KEY,'on'); start().catch(function(){ui(false);}); }
+    else { a.pause(); set(KEY,'off'); ui(false); }
+  });
+  if(get(KEY)==='off'){ ui(false); }
+  else { start().catch(armFirstTouch); }
+})();
+</script>
 </body>
 </html>
